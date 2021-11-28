@@ -40,9 +40,9 @@ function addS(num) {
 function App() {
 
   const [input, setInput] = useState("");
-  const [savedWords, setSvaedWords] = useState();
-  const [showName, setshowName] = useState();
-  const [showList, setShowList] = useState();
+  const [savedWords, setSvaedWords] = useState([]);
+  const [showName, setshowName] = useState("");
+  const [showList, setShowList] = useState(<ul></ul>);
 
   const makeShowList = (data, isRhyme) =>{
     if(data.length ===0){
@@ -67,7 +67,7 @@ function App() {
                         tempList.push(item.word)
                         return tempList
                       })
-                    }}></button>
+                    }}>(save)</button>
                   </li>
                 );
               })}
@@ -86,7 +86,7 @@ function App() {
               tempList.push(item.word);
               return tempList
             })
-          }}></button>
+          }}>(save)</button>
         </li>
       ))
     }
@@ -133,24 +133,25 @@ const clickOnSynonyms = () => {
 // HITS "ENTER", SHOW RHYMING WORDS
 const pressEnter = (event) =>{
   if (event.key === 'Enter'){
-    handleRhymesClick()
+    clickOnRhyme()
   }
 }
 
 return (
   <div className="App">
-    <div>Repo Address: <a href="https://github.com/yunnleeumich/SI579-Ps6" target="_blank">https://github.com/yunnleeumich/SI579-Ps6</a>
+    <div>Repo Address: <a href="https://github.com/yunleeumich/si579_problemset_6" 
+        target="_blank">https://github.com/yunleeumich/si579_problemset_6</a>
     </div>
     <div>
       <h1 className="row">Rhyme Finder (579 Probelm Set 6)</h1>
       <div className="row">
         <div className="col">
-          Saved words: <span id = "saved_words">{savedWords.join(", ")}</span>
+          Saved words: <span id="saved_words">{savedWords.join(", ")}</span>
         </div>
       </div>
       <div className="row">
         <div className="input-group col">
-          <input className="form-control" type="text" placeholder="Enter a word" value="{input" onChange={(e) => {
+          <input className="form-control" type="text" placeholder="Enter a word" value={input} onChange={(e) => {
             setInput(e.target.value);
             }} onKeyDown={pressEnter}/>
           
